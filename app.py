@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, request, session, redirect
 from flask_session import Session
 import MySQLdb
-
+from datetime import datetime
 app = Flask(__name__)
 sess = Session()
 
@@ -25,7 +25,14 @@ def postCab():
 	else :
 		return render_template("index.html") #return with error ******
 	form_dict = request.form.to_dict()
-	query = "INSERT INTO cabdetails (name,emailid,number,availSeats,source,dest,threshold,datetime) values ('%s','%s','%s','%s','%s','%s', '%s','%s')" % (form_dict["name"],form_dict["emailid"],form_dict["number"],form_dict["availSeats"],form_dict["source"],form_dict["dest"],form_dict["threshold"],form_dict["datetime"])
+	date = form_dict["date"]
+	time = form_dict["time"]
+	dateTime = date + time 
+	threshold = form_dict["threshold"]
+	print ("{} - {}".format(type(date),date))
+	print ("{} - {}".format(type(time),time))
+	# dateTime = datetime.strptime(form_dict["datetime"], '%Y-%m-%dT%H:%M:%S.%fZ')
+	query = "INSERT INTO cabdetails (name,emailid,number,availSeats,source,dest,date,time,threshold) values ('%s','%s','%s','%s','%s','%s', '%s','%s','%s')" % (form_dict["name"],form_dict["emailid"],form_dict["number"],form_dict["availSeats"],form_dict["source"],form_dict["dest"],date,time,threshold)
 	try :
 		cursor.execute(query)
 		db.commit()
@@ -33,7 +40,6 @@ def postCab():
 		print e
 	for key in form_dict.keys() :
 		print ("{} - {}\n".format(key,form_dict[key]))
-	print type(form_dict["datetime"])
 	# print 1
 	return (1)
 
