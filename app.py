@@ -22,8 +22,8 @@ def index():
 def postCab():
 	if cursor == None or db == None :
 		connect_database()
-	else :
-		return render_template("index.html") #return with error ******
+	# else :
+		# return render_template("index.html") #return with error ******
 	form_dict = request.form.to_dict()
 	date = form_dict["date"]
 	time = form_dict["time"]
@@ -38,22 +38,37 @@ def postCab():
 		db.commit()
 	except Exception as e :
 		print e
+		#Reder teml with error
 	for key in form_dict.keys() :
 		print ("{} - {}\n".format(key,form_dict[key]))
-	# print 1
-	return (1)
+	flag = True
+	msg = "Your ride data has been successfully submitted"
+	msgcode = "RidePost"
+	return render_template('index.html' , flag=flag, msg=msg,msgcode=msgcode)
 
 @app.route("/search-cab",methods=["POST"])
 def searchCab() :
 	if cursor == None or db == None :
 		connect_database()
+	# else :
+		# return render_template("index.html") #return with error ******
 	query = "SELECT * FROM cabdetails"
 	try :
 		cursor.execute(query)
+		cabsList = list()
 		for row in cursor.fetchall():
-			print row 
+			cabsList.append(dict(name= row[0],
+								email=row[1],
+								number=row[2],
+								availSeats=row[3],
+								dest=row[5],
+								threshold=row[6],
+								datetime=row[7]
+								))
+		return render_template('cabsSearchResult.html' , cabsList=cabsList)
 	except Exception as e :
 		print e 
+		#Reder teml with error
 
 app.secret_key = 'kwoc'
 app.config['SESSION_TYPE'] = 'filesystem'

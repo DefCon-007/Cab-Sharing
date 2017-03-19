@@ -6,6 +6,14 @@
 </head>
 
 <body>
+{% if flag %}
+ <script type="text/javascript">
+var msgcode = "{{ msgcode }}";
+if (msgcode == "RidePost"){
+alert("{{msg}}")
+}
+ </script>
+{% endif %}
     {# Cab posting from #}
     <form action="/post-cab" method="post">
         <input type="text" name="name" id="name" placeholder=" Name" autocomplete="off" required>
