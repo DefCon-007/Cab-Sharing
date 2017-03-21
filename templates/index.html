@@ -175,7 +175,16 @@
                                 <input type="number" name="availSeats" id="availSeats" placeholder="Available Seats" autocomplete="off" required>
                             </div>
                             <div class="tmInput mr0">
-                                <input type="text" name="dest" id="dest" placeholder="To" autocomplete="off" required>
+                                {# <input type="text" name="dest" id="dest" placeholder="To" autocomplete="off" required> #}
+                                <label>Destination</label>
+                                <select name="dest">
+                                	<option value="kolAirport">Kolkata Airport</option>
+                                	<option value="hwhStation">Howrah Station</option>
+                                	<option value="mandarmani">Mandarmani</option>
+                                	<option value="digha">Digha Beach</option>
+                                	<option value="flavours">Flavours</option>
+                                	<option value="dominoes">Dominoes</option>                  
+                                </select>
                             </div>
                         </div>
                         <div class="clear"></div>
@@ -249,7 +258,16 @@
                     <form id="bookingForm" action="/search-cab" method="post">
                         <div class="fl1">
                             <div class="tmInput">
-                                <input type="text" name="dest" id="dest" placeholder="Destination" autocomplete="off" required>
+                                {# <input type="text" name="dest" id="dest" placeholder="Destination" autocomplete="off" required> #}
+                                                                <label>Destination</label>
+                                <select name="dest">
+                                	<option value="kolAirport">Kolkata Airport</option>
+                                	<option value="hwhStation">Howrah Station</option>
+                                	<option value="mandarmani">Mandarmani</option>
+                                	<option value="digha">Digha Beach</option>
+                                	<option value="flavours">Flavours</option>
+                                	<option value="dominoes">Dominoes</option>                  
+                                </select>
                             </div>
                         </div>
                         <div class="clear"></div>
@@ -264,7 +282,7 @@
                         </div>
                         <div class="clear"></div>
                         <input class="btn" type="reset">
-                        <input class="btn" type="submit" value="Post Cab"> {# <a href="#" class="btn" data-type="submit">Submit</a> #}
+                        <input class="btn" type="submit" value="Search Cab"> {# <a href="#" class="btn" data-type="submit">Submit</a> #}
                     </form>
                 </div>
                 <div class="clear"></div>
