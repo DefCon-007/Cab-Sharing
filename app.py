@@ -46,6 +46,7 @@ def postCab():
 	msgcode = "RidePost"
 	return render_template('index.html' , flag=flag, msg=msg,msgcode=msgcode)
 
+
 @app.route("/search-cab",methods=["POST"])
 def searchCab() :
 	if cursor == None or db == None :
@@ -53,6 +54,11 @@ def searchCab() :
 	# else :
 		# return render_template("index.html") #return with error ******
 	query = "SELECT * FROM cabdetails"
+	form_dict = request.form.to_dict()
+	dest = form_dict["dest"]
+	date = form_dict["date"]
+	time = form_dict["time"]
+	
 	try :
 		cursor.execute(query)
 		cabsList = list()

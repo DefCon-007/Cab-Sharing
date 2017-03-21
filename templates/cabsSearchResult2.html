@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Search Result</title>
+</head>
+<body>
+        <table id="mainTable">
+            <tr class="header">
+                <th >Ride Owner</th>
+                <th >Email</th>
+                <th >Phone</th>
+				<th >Available Seats</th>
+            </tr>
+            {% for cab in cabsList %}
+                <tr>
+                    <td>{{cab.name}}</td>
+                    <td>{{cab.email}}</td>
+                    <td>{{cab.number}}</td>
+                    <td>{{cab.availSeats}}</td>
+                </tr>
+            {% endfor %}
+</body>
+</html>	

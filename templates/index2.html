@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cab Sharing</title>
+</head>
+
+<body>
+{% if flag %}
+ <script type="text/javascript">
+var msgcode = "{{ msgcode }}";
+if (msgcode == "RidePost"){
+alert("{{msg}}")
+}
+ </script>
+{% endif %}
+    {# Cab posting from #}
+    <form action="/post-cab" method="post">
+        <input type="text" name="name" id="name" placeholder=" Name" autocomplete="off" required>
+        <input type="email" name="emailid" id="emailid" placeholder="Email Address" autocomplete="off" required>
+        <input type="number" name="number" id="number" placeholder="Contact Number" autocomplete="off" required>
+        <input type="number" name="availSeats" id="availSeats" placeholder="Available Seats" autocomplete="off" required>
+        <input type="text" name="source" id="source" placeholder="Source" autocomplete="off" required>
+        <input type="text" name="dest" id="dest" placeholder="Destination" autocomplete="off" required>
+        <input type="time" name="threshold" id="threshold" placeholder="Threshold (in Hours)" autocomplete="off" required>
+        <input type="date" name="date" id="date" placeholder="Date" autocomplete="off" required>
+                <input type="time" name="time" id="time" placeholder="Time" autocomplete="off" required>
+        <input type="reset">
+        <input type="submit" value="Post Cab">
+    </form>
+    <form action="/search-cab" method="post">
+        <input type="datetime-local" name="datetime" id="datetime" placeholder="Date & Time" autocomplete="off" required>
+        <input type="text" name="dest" id="dest" placeholder="Destination" autocomplete="off" required>
+        <input type="submit" " value="Search Cab ">
+    </form>
+</body>
+
+</html>
