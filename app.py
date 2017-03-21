@@ -63,7 +63,8 @@ def searchCab() :
 		cursor.execute(query)
 		cabsList = list()
 		for row in cursor.fetchall():
-			cabsList.append(dict(name= row[0],
+			if (dest == row[5]) :
+				cabsList.append(dict(name= row[0],
 								email=row[1],
 								number=row[2],
 								availSeats=row[3],
