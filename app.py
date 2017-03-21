@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for, request, session, redirect
 from flask_session import Session
 import MySQLdb
-from datetime import datetime
+from datetime import datetime,timedelta
 app = Flask(__name__)
 sess = Session()
 
@@ -58,25 +58,33 @@ def searchCab() :
 	dest = form_dict["dest"]
 	date = form_dict["date"]
 	time = form_dict["time"]
-	
+	print ("{} - {}".format(type(date) , date))
+	print ("{} - {}".format(type(time) , time))
+	userDatetime = convertDateTime(date,time)
 	try :
 		cursor.execute(query)
 		cabsList = list()
 		for row in cursor.fetchall():
 			if (dest == row[5]) :
-				cabsList.append(dict(name= row[0],
+				x = row[6].strftime("%Y-%m-%d")
+				y= str(row[7])
+				cabDateTime = convertDateTime(x,y[:-3])
+				if ((cabDateTime <= userDatetime + timedelta(hours=row[8])) and (cabDateTime >= userDatetime - timedelta(hours=row[8])) ) :
+					cabsList.append(dict(name= row[0],
 								email=row[1],
 								number=row[2],
 								availSeats=row[3],
 								dest=row[5],
-								threshold=row[6],
-								datetime=row[7]
+								date=row[6],
+								time=row[7],
+								threshold = row[8]
 								))
 		return render_template('cabsSearchResult.html' , cabsList=cabsList)
 	except Exception as e :
 		print e 
 		#Reder teml with error
-
+def convertDateTime(date , time):
+	return datetime.strptime(date+"T"+time,'%Y-%m-%dT%H:%M')
 app.secret_key = 'kwoc'
 app.config['SESSION_TYPE'] = 'filesystem'
 
