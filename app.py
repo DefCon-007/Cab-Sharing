@@ -2,6 +2,7 @@ from flask import Flask, render_template, url_for, request, session, redirect
 from flask_session import Session
 import MySQLdb
 import json
+import os
 from flask import jsonify
 from datetime import datetime,timedelta
 app = Flask(__name__)
@@ -12,7 +13,7 @@ db = None
 def connect_database():
 	global cursor,db
 	# Open database connection
-	db = MySQLdb.connect("127.0.0.1", "me", "123", "cab")
+	db = MySQLdb.connect(os.environ["CAB-SHARING-MYSQL-IP"], os.environ["CAB-SHARING-MYSQL-USER"], os.environ["CAB-SHARING-MYSQL-PASSWORD"], os.environ["CAB-SHARING-MYSQL-DATABASENAME"])
 	# prepare a cursor object using cursor() method
 	cursor = db.cursor()
 
