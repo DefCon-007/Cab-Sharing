@@ -13,7 +13,7 @@ db = None
 def connect_database():
 	global cursor,db
 	# Open database connection
-	db = MySQLdb.connect(os.environ["CAB-SHARING-MYSQL-IP"], os.environ["CAB-SHARING-MYSQL-USER"], os.environ["CAB-SHARING-MYSQL-PASSWORD"], os.environ["CAB-SHARING-MYSQL-DATABASENAME"])
+	db = MySQLdb.connect(os.environ["CAB_SHARING_MYSQL_IP"], os.environ["CAB_SHARING_MYSQL_USER"], os.environ["CAB_SHARING_MYSQL_PASSWORD"], os.environ["CAB_SHARING_MYSQL_DATABASENAME"])
 	# prepare a cursor object using cursor() method
 	cursor = db.cursor()
 
