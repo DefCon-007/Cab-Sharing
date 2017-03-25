@@ -17,10 +17,6 @@ def connect_database():
 	# prepare a cursor object using cursor() method
 	cursor = db.cursor()
 
-@app.route("/")
-def index():
-	return render_template("index.html")
-
 @app.route("/post-cab", methods=["POST"])
 def postCab():
 	if cursor == None or db == None :
