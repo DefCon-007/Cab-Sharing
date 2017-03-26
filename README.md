@@ -16,7 +16,7 @@ python app.py
 
 ## Basic API endpoints
 
- > /get-all-cabs  
+ #### > /get-all-cabs  
  	This endpoint returns all the cabs 
  	Parameters Required : 
  		None 
@@ -32,7 +32,7 @@ python app.py
 											time=Time of Journey
 											threshold = Threshold of time
 
-> /search-cab , method : POST
+#### > /search-cab , method : POST
 	This end point returns all the cabs that have the same destination and times lies between posted time +/- threshold
 	Parameters Required :
 		dest : String - The destination of the user
@@ -48,7 +48,7 @@ python app.py
 											dest=Destination
 											threshold = Threshold of time
 
-> /post-cab , method : POST
+#### > /post-cab , method : POST
 	This endpoint is used to add a cab to the database
 	Paramenters Required : 
 		name = Name of person who posted the cab 
